@@ -32,6 +32,31 @@ MsgBox (rez)
 End Sub
 
 
+Public Function SumaZadKol(ByRef mat() As Integer, ByVal brRed As Integer, ByVal zadKol As Integer) As Integer
+    Dim suma As Integer
+    Dim i As Integer
+    suma = 0
+    For i = 1 To brRed
+        'Prolazimo kroz sve redove i sumiramo elemente zadate kolone
+        suma = suma + mat(i, zadKol)
+    Next i
+    SumaZadKol = suma
+End Function
+
+Public Function MaxSumaKol(ByRef mat() As Integer, ByVal brRed As Integer, ByVal brKol As Integer) As Integer
+    Dim j As Integer
+    Dim max As Integer
+    Dim suma As Integer
+    max = SumaZadKol(mat, brRed, 1)
+    For j = 2 To brKol
+        suma = SumaZadKol(mat, brRed, j)
+        If suma > max Then
+            max = suma
+        End If
+    Next j
+    MaxSumaKol = max
+End Function
+
 Sub sabiranjeMatrice(mat1() As Integer, mat2() As Integer, mat3() As Integer, ByVal brojRedova As Integer, ByVal brojKolona As Integer)
 
     Dim i As Integer
